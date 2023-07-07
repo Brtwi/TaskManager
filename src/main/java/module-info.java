@@ -9,6 +9,10 @@ module com.example.taskmanager {
             
     opens Application to javafx.fxml;
     exports Application;
-    exports Application.Controller;
-    opens Application.Controller to javafx.fxml;
+
+
+    exports Application.Client.Controller;
+    opens Application.Client.Controller to javafx.fxml;
+    exports Application.View;
+    opens Application.View to javafx.fxml;
 }
