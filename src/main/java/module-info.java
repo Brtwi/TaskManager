@@ -7,6 +7,8 @@ module com.example.taskmanager {
             requires net.synedra.validatorfx;
                 requires org.kordamp.bootstrapfx.core;
             
-    opens com.example.taskmanager to javafx.fxml;
-    exports com.example.taskmanager;
+    opens Application to javafx.fxml;
+    exports Application;
+    exports Application.Controller;
+    opens Application.Controller to javafx.fxml;
 }
