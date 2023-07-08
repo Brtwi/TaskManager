@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Application.View.NewTaskView"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.View.NewTaskView">
+   <children>
+      <GridPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Title" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="sendButton" prefHeight="37.0" prefWidth="133.0" text="Send" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="saveButton" prefHeight="37.0" prefWidth="133.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cancelButton" prefHeight="37.0" prefWidth="133.0" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="addFilesButton" prefHeight="26.0" prefWidth="114.0" text="Add files" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="titleTextField" prefHeight="26.0" prefWidth="299.0" promptText="My Task" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <JFXTextArea fx:id="descriptionTextField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <Label fx:id="fileAmountLabel" text="Files - 2" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>
