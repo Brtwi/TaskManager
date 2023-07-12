@@ -32,7 +32,7 @@
       </Label>
       <TextField fx:id="usernameTextF" layoutX="117.0" layoutY="88.0" prefHeight="26.0" prefWidth="204.0" promptText="Username" />
       <PasswordField fx:id="passwordTextF" layoutX="117.0" layoutY="133.0" prefHeight="26.0" prefWidth="204.0" promptText="Password" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="51.0" layoutX="17.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="392.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="51.0" layoutX="17.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50px; -fx-arc-width: 50px;" width="392.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -50,7 +50,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="signInButton" alignment="TOP_CENTER" layoutX="17.0" layoutY="8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="392.0" style="-fx-background-color: 0; -fx-background-radius: 5;" text="Sign in">
+      <Button fx:id="signInButton" alignment="TOP_CENTER" layoutX="17.0" layoutY="8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="392.0" style="-fx-background-color: transparent; -fx-background-radius: 5px;" text="Sign in">
          <font>
             <Font size="24.0" />
          </font>
