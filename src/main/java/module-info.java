@@ -1,4 +1,4 @@
-module com.example.taskmanager {
+module Application {
     requires javafx.controls;
     requires javafx.fxml;
             
@@ -6,7 +6,8 @@ module com.example.taskmanager {
             requires com.dlsc.formsfx;
             requires net.synedra.validatorfx;
                 requires org.kordamp.bootstrapfx.core;
-            
+    requires java.sql;
+
     opens Application to javafx.fxml;
     exports Application;
     exports Application.Shared.Model;

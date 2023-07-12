@@ -13,8 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="189.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/19.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.View.LoginView">
+<AnchorPane prefHeight="189.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.Login">
    <children>
       <ImageView fitHeight="102.0" fitWidth="103.0" layoutX="303.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -51,10 +50,15 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="signInButton" alignment="TOP_CENTER" layoutX="17.0" layoutY="8.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="392.0" style="-fx-background-color: 0; -fx-background-radius: 5;" text="Sign in">
+      <Button fx:id="signInButton" alignment="TOP_CENTER" layoutX="17.0" layoutY="8.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="392.0" style="-fx-background-color: 0; -fx-background-radius: 5;" text="Sign in">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="15.0" layoutY="33.0" prefHeight="136.0" prefWidth="398.0" text="Wrong username or password" textAlignment="CENTER" textFill="#c40909" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
