@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.RegisterView">
    <children>
       <Label layoutX="240.0" layoutY="14.0" text="Register" textAlignment="CENTER">
          <font>
@@ -49,7 +49,7 @@
             <TextField fx:id="emailTextF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <JFXButton fx:id="signUpButton" layoutX="255.0" layoutY="338.0" style="-fx-background-color: #61c2bc;" text="Sign up!">
+      <JFXButton fx:id="signUpButton" layoutX="255.0" layoutY="338.0" onAction="#signUp" style="-fx-background-color: #61c2bc;" text="Sign up!">
          <font>
             <Font size="18.0" />
          </font>
