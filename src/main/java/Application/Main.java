@@ -17,7 +17,6 @@ public class Main extends Application
     public void start(Stage primaryStage) throws IOException
     {
         stage = primaryStage;
-        primaryStage.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
         Parent root = fxmlLoader.load();

@@ -7,6 +7,7 @@ module Application {
             requires net.synedra.validatorfx;
                 requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires com.microsoft.sqlserver.jdbc;
 
     opens Application to javafx.fxml;
     exports Application;

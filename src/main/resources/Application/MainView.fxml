@@ -39,7 +39,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <JFXButton fx:id="addTaskButton" buttonType="RAISED" layoutX="565.0" layoutY="399.0" prefHeight="30.0" prefWidth="130.0" text="Add" textOverrun="CLIP" />
+      <JFXButton fx:id="addTaskButton" buttonType="RAISED" layoutX="565.0" layoutY="399.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: red;" text="Add" textOverrun="CLIP" />
       <JFXButton fx:id="deleteTaskButton" buttonType="RAISED" layoutX="565.0" layoutY="501.0" prefHeight="30.0" prefWidth="130.0" text="Delete" />
       <JFXButton fx:id="editTaskButton" buttonType="RAISED" layoutX="565.0" layoutY="450.0" prefHeight="30.0" prefWidth="130.0" text="Edit" />
    </children>
