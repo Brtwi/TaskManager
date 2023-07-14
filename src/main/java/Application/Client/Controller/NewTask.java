@@ -1,4 +1,4 @@
-package Application.View;
+package Application.Client.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NewTaskView implements Initializable
+public class NewTask implements Initializable
 {
     @FXML
     private TextField titleTextField;

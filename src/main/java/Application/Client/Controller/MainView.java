@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainViewController implements Initializable
+public class MainView
 {
     @FXML
     private ListView<Task> allListView;
@@ -26,12 +26,6 @@ public class MainViewController implements Initializable
     private Button editTaskButton;
 
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-
-    }
 
     private void setupButtons()
     {

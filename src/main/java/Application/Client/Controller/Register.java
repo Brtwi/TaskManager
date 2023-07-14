@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class RegisterView
+public class Register
 {
     @FXML
     private TextField usernameTextF;
