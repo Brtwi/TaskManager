@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainView
+public class MainView implements Initializable
 {
     @FXML
-    private ListView<Task> allListView;
+    private ListView<Task> allListView = new ListView<>();
     @FXML
-    private ListView<Task> ownListView;
+    private ListView<Task> ownListView = new ListView<>();
     @FXML
-    private ListView<Task> sentListView;
+    private ListView<Task> sentListView = new ListView<>();
     @FXML
     private Button addTaskButton;
     @FXML
@@ -32,15 +32,11 @@ public class MainView
 
 
 
-    private void setupButtons()
-    {
-
-    }
 
     public void addTask(ActionEvent event) throws IOException
     {
         Main main = new Main();
-        main.openDialog("NewTaskView.fxml");
+        main.openDialog("NewTaskView.fxml", "New Task");
     }
 
     private void setupLists()
@@ -101,4 +97,9 @@ public class MainView
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        setupLists();
+    }
 }

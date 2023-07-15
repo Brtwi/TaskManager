@@ -32,9 +32,10 @@ public class Main extends Application
     {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         stage.setScene(new Scene(pane));
+        stage.centerOnScreen();
     }
 
-    public void openDialog(String fxml) throws IOException
+    public void openDialog(String fxml, String title) throws IOException
     {
         Stage dialog = new Stage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
@@ -42,8 +43,9 @@ public class Main extends Application
 
         dialog.initOwner(stage);
         dialog.initModality(Modality.WINDOW_MODAL);
-        dialog.setTitle("New Task");
+        dialog.setTitle(title);
         dialog.show();
+        dialog.centerOnScreen();
     }
 
     public static void main(String[] args)
