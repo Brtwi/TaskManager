@@ -16,6 +16,6 @@ module Application {
 
     exports Application.Client.Controller;
     opens Application.Client.Controller to javafx.fxml;
-    exports Application.View;
-    opens Application.View to javafx.fxml;
+
+    opens Application.Icons to javafx.fxml;
 }

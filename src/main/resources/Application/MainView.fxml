@@ -42,12 +42,12 @@
             </Tab>
         </tabs>
       </TabPane>
-      <JFXButton fx:id="addTaskButton" buttonType="RAISED" layoutX="542.0" layoutY="342.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #10AD80;" text="Add" textOverrun="CLIP" />
+      <JFXButton fx:id="addTaskButton" buttonType="RAISED" layoutX="542.0" layoutY="342.0" onAction="#addTask" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #10AD80;" text="Add" textOverrun="CLIP" />
       <JFXButton fx:id="deleteTaskButton" buttonType="RAISED" layoutX="542.0" layoutY="444.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #10AD80;" text="Delete" />
       <JFXButton fx:id="editTaskButton" buttonType="RAISED" layoutX="541.0" layoutY="393.0" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #10AD80;" text="Edit" />
       <ImageView fitHeight="86.0" fitWidth="107.0" layoutX="664.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/Application/View/Icons/logout.png" />
+            <Image url="@Icons/logout.png" />
          </image>
       </ImageView>
       <Button fx:id="logoutButton" layoutX="664.0" layoutY="34.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: transparent;" />

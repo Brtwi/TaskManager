@@ -3,14 +3,17 @@ package Application.Client.Controller;
 import Application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Login
+public class Login implements Initializable
 {
     @FXML
     private TextField usernameTextF;
@@ -40,5 +43,11 @@ public class Login
             Thread.sleep(1000);
             errorLabel.setVisible(false);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+
     }
 }

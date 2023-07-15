@@ -83,12 +83,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton prefHeight="17.0" prefWidth="106.0" text="Edit">
+                  <JFXButton fx:id="editSaveButton" onAction="#edit" prefHeight="17.0" prefWidth="106.0" style="-fx-background-color: #10AD80;" text="Edit">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton prefHeight="17.0" prefWidth="106.0" text="Edit" GridPane.columnIndex="1">
+                  <JFXButton fx:id="cancelButton" onAction="#cancel" prefHeight="17.0" prefWidth="106.0" style="-fx-background-color: #10AD80;" text="Cancel" GridPane.columnIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>

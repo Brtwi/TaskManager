@@ -1,8 +1,11 @@
 package Application;
 
+import Application.Client.Controller.MainView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.application.Application;
 
@@ -21,14 +24,26 @@ public class Main extends Application
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("Task manager");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
     public void changeScene(String fxml) throws IOException
     {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
-        stage.getScene().setRoot(pane);
+        stage.setScene(new Scene(pane));
+    }
+
+    public void openDialog(String fxml) throws IOException
+    {
+        Stage dialog = new Stage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        dialog.setScene(new Scene(root));
+
+        dialog.initOwner(stage);
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.setTitle("New Task");
+        dialog.show();
     }
 
     public static void main(String[] args)
