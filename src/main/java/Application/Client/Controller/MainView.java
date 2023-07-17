@@ -6,9 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,14 +27,49 @@ public class MainView implements Initializable
     private Button deleteTaskButton;
     @FXML
     private Button editTaskButton;
-
-
+    @FXML
+    private TabPane tabPane;
+    private final Main main = new Main();
 
 
     public void addTask(ActionEvent event) throws IOException
     {
-        Main main = new Main();
         main.openDialog("NewTaskView.fxml", "New Task");
+    }
+
+    public void edit(ActionEvent event) throws IOException
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please select task to edit", ButtonType.OK);
+
+        switch (tabPane.getSelectionModel().getSelectedIndex())
+        {
+            case 0 ->
+            {
+                if (allListView.getSelectionModel().getSelectedItem() == null)
+                    alert.show();
+                return;
+            }
+            case 1 ->
+            {
+                if (ownListView.getSelectionModel().getSelectedItem() == null)
+                    alert.show();
+                return;
+            }
+            case 2 ->
+            {
+                if (sentListView.getSelectionModel().getSelectedItem() == null)
+                    alert.show();
+                return;
+            }
+        }
+
+        main.openDialog("TaskDetailsView.fxml", "Edit Task");
+    }
+
+    public void delete(ActionEvent event) throws IOException
+    {
+        //TODO find actual list, check if task is selected, delete
+
     }
 
     private void setupLists()

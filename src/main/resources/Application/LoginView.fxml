@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="189.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.Login">
    <children>
       <ImageView fitHeight="102.0" fitWidth="103.0" layoutX="303.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -60,5 +60,15 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label layoutX="139.0" layoutY="181.0" text="Not a member?">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="231.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sign up!" textFill="#3636f2">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
