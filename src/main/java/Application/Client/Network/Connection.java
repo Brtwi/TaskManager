@@ -1,5 +1,8 @@
 package Application.Client.Network;
 
+import Application.Client.Services.ClientNetworkService;
+import Application.Client.Services.UserServices;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -7,7 +10,7 @@ public class Connection
 {
     private final static int PORT = 2002;
     private static final String SERVER = "localhost";
-    private static Client client;
+    private static ClientNetworkService networkService;
 
     public void start()
     {
@@ -23,9 +26,7 @@ public class Connection
             DataOutputStream dos = new DataOutputStream(fileSocket.getOutputStream());
             DataInputStream dis = new DataInputStream(fileSocket.getInputStream());
 
-
-            client = new Client(socket, in, out, fileSocket, dos, dis);
-
+            networkService = new ClientNetworkService(new Client(socket, in, out, fileSocket, dos, dis));
 
         } catch (IOException e)
         {
@@ -33,4 +34,8 @@ public class Connection
         }
     }
 
+    public static ClientNetworkService getNetworkService()
+    {
+        return networkService;
+    }
 }

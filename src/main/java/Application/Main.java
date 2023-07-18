@@ -1,17 +1,16 @@
 package Application;
 
-import Application.Client.Controller.MainView;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Dialog;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.application.Application;
 
 import java.io.IOException;
 import java.util.Objects;
-
 public class Main extends Application
 {
     private static Stage stage;
@@ -50,10 +49,6 @@ public class Main extends Application
 
     public static void main(String[] args)
     {
-        System.out.println(System.getProperty("java.version"));
-        System.out.println(System.getProperty("javafx.version"));
         launch();
-
-
     }
 }

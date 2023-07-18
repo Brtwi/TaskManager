@@ -25,5 +25,33 @@ public class Client
         this.dataOutputStream = dos;
     }
 
+    public Socket getSocket()
+    {
+        return socket;
+    }
 
+    public Socket getFileSocket()
+    {
+        return fileSocket;
+    }
+
+    public ObjectInputStream getInputStream()
+    {
+        return inputStream;
+    }
+
+    public ObjectOutputStream getOutputStream()
+    {
+        return outputStream;
+    }
+
+    public DataInputStream getDataInputStream()
+    {
+        return dataInputStream;
+    }
+
+    public DataOutputStream getDataOutputStream()
+    {
+        return dataOutputStream;
+    }
 }

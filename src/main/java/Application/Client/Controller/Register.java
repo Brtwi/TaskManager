@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class Register
+import java.io.IOException;
+
+public class Register implements IMain
 {
     @FXML
     private TextField usernameTextF;
@@ -15,22 +17,25 @@ public class Register
     @FXML
     private Button signUpButton;
 
-    public void signUp(ActionEvent event)
+    public void signUp(ActionEvent event) throws IOException
     {
         checkInfo();
     }
 
-    private void checkInfo()
+    private void checkInfo() throws IOException
     {
         if(usernameTextF.getText().trim().isEmpty()
                 || emailTextF.getText().trim().isEmpty()
                 || passwordField.getText().trim().isEmpty())
         {
-
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter required data.", ButtonType.OK);
+            alert.show();
         }
         else
         {
-
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Welcome " + usernameTextF.getText(), ButtonType.OK);
+            alert.show();
+            main.changeScene("MainView.fxml");
         }
     }
 }

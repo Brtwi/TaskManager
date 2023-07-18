@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login implements Initializable
+public class Login implements Initializable, IMain
 {
     @FXML
     private TextField usernameTextF;
@@ -23,7 +23,6 @@ public class Login implements Initializable
     private Button signInButton;
     @FXML
     private Label errorLabel;
-
     public void loginAction(ActionEvent event) throws IOException, InterruptedException
     {
         checkLogin();
@@ -31,7 +30,7 @@ public class Login implements Initializable
 
     private void checkLogin() throws IOException, InterruptedException
     {
-        Main main = new Main();
+
 
         if(usernameTextF.getText().equals("admin") && passwordTextF.getText().equals("admin"))
         {
@@ -45,6 +44,10 @@ public class Login implements Initializable
         }
     }
 
+    public void signUp(ActionEvent event) throws IOException
+    {
+        main.changeScene("RegisterView.fxml");
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {

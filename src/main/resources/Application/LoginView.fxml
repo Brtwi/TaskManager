@@ -65,7 +65,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button layoutX="231.0" layoutY="177.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Sign up!" textFill="#3636f2">
+      <Button fx:id="signUpButton" layoutX="231.0" layoutY="177.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: transparent;" text="Sign up!" textFill="#3636f2">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>

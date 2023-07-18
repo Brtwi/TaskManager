@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainView implements Initializable
+public class MainView implements Initializable, IMain
 {
     @FXML
     private ListView<Task> allListView = new ListView<>();
@@ -29,8 +29,6 @@ public class MainView implements Initializable
     private Button editTaskButton;
     @FXML
     private TabPane tabPane;
-    private final Main main = new Main();
-
 
     public void addTask(ActionEvent event) throws IOException
     {
