@@ -16,10 +16,17 @@ public class Register implements IMain
     private PasswordField passwordField;
     @FXML
     private Button signUpButton;
+    @FXML
+    private Button signinButton;
 
     public void signUp(ActionEvent event) throws IOException
     {
         checkInfo();
+    }
+
+    public void backToLogin(ActionEvent event) throws IOException
+    {
+        main.changeScene("LoginView.fxml");
     }
 
     private void checkInfo() throws IOException

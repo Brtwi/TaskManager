@@ -28,6 +28,10 @@ public class Login implements Initializable, IMain
         checkLogin();
     }
 
+    public void continueLocally(ActionEvent event) throws IOException
+    {
+        main.changeScene("MainView.fxml");
+    }
     private void checkLogin() throws IOException, InterruptedException
     {
 
@@ -35,6 +39,7 @@ public class Login implements Initializable, IMain
         if(usernameTextF.getText().equals("admin") && passwordTextF.getText().equals("admin"))
         {
             main.changeScene("MainView.fxml");
+
         }
         else
         {

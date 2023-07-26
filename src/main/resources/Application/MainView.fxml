@@ -50,6 +50,6 @@
             <Image url="@Icons/logout.png" />
          </image>
       </ImageView>
-      <Button fx:id="logoutButton" layoutX="664.0" layoutY="34.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="logoutButton" layoutX="664.0" layoutY="34.0" mnemonicParsing="false" onAction="#logout" prefHeight="86.0" prefWidth="86.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

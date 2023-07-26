@@ -2,17 +2,23 @@ package Application.Client.Controller;
 
 import Application.Client.Services.TaskServices;
 import Application.Main;
+import Application.Shared.Model.IUser;
+import Application.Shared.Model.Task;
+import Application.Shared.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NewTask
+public class NewTask implements IUser
 {
     @FXML
     private TextField titleTextField;
@@ -46,7 +52,10 @@ public class NewTask
     {
         if(checkFields())
         {
-            taskServices.saveTask();
+            takeTaskData();
+            Task task = new Task.TaskBuilder(localUser, titleTextField.getText(), descriptionTextField.getText())
+                    .build();
+            //taskServices.saveTask();
         }
         else
         {
@@ -55,9 +64,22 @@ public class NewTask
         }
     }
 
+    private void takeTaskData()
+    {
+
+    }
+
     public void send(ActionEvent event) throws IOException
     {
         main.openDialog("OnlineUsersView.fxml", "Online Users");
+    }
+
+    public void addFiles(ActionEvent event)
+    {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+
+        taskServices.addFileToQueue(file);
     }
 
     private boolean checkFields()

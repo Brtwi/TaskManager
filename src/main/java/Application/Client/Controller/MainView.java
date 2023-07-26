@@ -22,12 +22,6 @@ public class MainView implements Initializable, IMain
     @FXML
     private ListView<Task> sentListView = new ListView<>();
     @FXML
-    private Button addTaskButton;
-    @FXML
-    private Button deleteTaskButton;
-    @FXML
-    private Button editTaskButton;
-    @FXML
     private TabPane tabPane;
 
     public void addTask(ActionEvent event) throws IOException
@@ -35,9 +29,30 @@ public class MainView implements Initializable, IMain
         main.openDialog("NewTaskView.fxml", "New Task");
     }
 
+    public void delete(ActionEvent event) throws IOException
+    {
+        //TODO find actual list, check if task is selected, delete
+
+    }
+
+    public void logout(ActionEvent event) throws IOException
+    {
+        main.changeScene("LoginView.fxml");
+    }
+
     public void edit(ActionEvent event) throws IOException
     {
+        Task task = getSelectedTask();
+
+        if(task != null)
+            main.openDialog("TaskDetailsView.fxml", "Edit Task");
+
+    }
+
+    private Task getSelectedTask()
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please select task to edit", ButtonType.OK);
+        Task task = null;
 
         switch (tabPane.getSelectionModel().getSelectedIndex())
         {
@@ -45,30 +60,26 @@ public class MainView implements Initializable, IMain
             {
                 if (allListView.getSelectionModel().getSelectedItem() == null)
                     alert.show();
-                return;
+                else
+                    task = allListView.getSelectionModel().getSelectedItem();
             }
             case 1 ->
             {
                 if (ownListView.getSelectionModel().getSelectedItem() == null)
                     alert.show();
-                return;
+                task = ownListView.getSelectionModel().getSelectedItem();
             }
             case 2 ->
             {
                 if (sentListView.getSelectionModel().getSelectedItem() == null)
                     alert.show();
-                return;
+                task = sentListView.getSelectionModel().getSelectedItem();
             }
         }
-
-        main.openDialog("TaskDetailsView.fxml", "Edit Task");
+        return task;
     }
 
-    public void delete(ActionEvent event) throws IOException
-    {
-        //TODO find actual list, check if task is selected, delete
 
-    }
 
     private void setupLists()
     {
