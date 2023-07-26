@@ -17,14 +17,14 @@
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="239.20000762939452" minWidth="10.0" prefWidth="117.6000244140625" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.20001220703125" minWidth="10.0" prefWidth="147.3999755859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.20001220703125" minWidth="10.0" prefWidth="175.00006103515625" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="186.20001220703125" minWidth="10.0" prefWidth="175.00006103515625" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.19999999999993" minWidth="10.0" prefWidth="154.39995117187493" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -65,13 +65,18 @@
                </font>
             </TextField>
             <JFXTextArea fx:id="descriptionTextField" prefWidth="369.0" style="-fx-background-color: white; -fx-border-color: #0B7B5C;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-            <Label fx:id="fileAmountLabel" text="Files - 2" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="fileAmountLabel" text="Files - 2" visible="false" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
                </font>
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
+            </Label>
+            <Label fx:id="receiverLabel" text="Send to" textAlignment="CENTER" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Label>
          </children>
       </GridPane>

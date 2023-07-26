@@ -4,19 +4,14 @@ import Application.Client.Services.TaskServices;
 import Application.Main;
 import Application.Shared.Model.IUser;
 import Application.Shared.Model.Task;
-import Application.Shared.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class NewTask implements IUser
 {
@@ -25,15 +20,11 @@ public class NewTask implements IUser
     @FXML
     private TextArea descriptionTextField;
     @FXML
-    private Button addFilesButton;
-    @FXML
-    private Button saveButton;
-    @FXML
     private Button cancelButton;
     @FXML
-    private Button sendButton;
-    @FXML
     private Label fileAmountLabel;
+    @FXML
+    private Label receiverLabel;
     private final TaskServices taskServices;
     private final Main main = new Main();
 
@@ -52,21 +43,18 @@ public class NewTask implements IUser
     {
         if(checkFields())
         {
-            takeTaskData();
             Task task = new Task.TaskBuilder(localUser, titleTextField.getText(), descriptionTextField.getText())
+                    .files(taskServices.getFileCache())
+                    .receiver(taskServices.genereteReceiverUser(receiverLabel.getText()))
                     .build();
-            //taskServices.saveTask();
+
+            taskServices.saveTask(task);
         }
         else
         {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Check if all fields are filled", ButtonType.OK);
             alert.show();
         }
-    }
-
-    private void takeTaskData()
-    {
-
     }
 
     public void send(ActionEvent event) throws IOException
@@ -79,7 +67,9 @@ public class NewTask implements IUser
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
 
-        taskServices.addFileToQueue(file);
+        taskServices.addFileToCache(file);
+        fileAmountLabel.setText(taskServices.getFileCache().size() + "");
+        fileAmountLabel.setVisible(true);
     }
 
     private boolean checkFields()
@@ -87,11 +77,5 @@ public class NewTask implements IUser
         return !titleTextField.getText().trim().isEmpty() &&
                 !descriptionTextField.getText().trim().isEmpty();
     }
-
-    private void setAmountLabel(int amount)
-    {
-        this.fileAmountLabel.setText(String.valueOf(amount));
-    }
-
 
 }

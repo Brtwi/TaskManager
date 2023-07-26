@@ -8,6 +8,9 @@ module Application {
                 requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires com.microsoft.sqlserver.jdbc;
+    requires lombok;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 
 
     opens Application to javafx.fxml;
