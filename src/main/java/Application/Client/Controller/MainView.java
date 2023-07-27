@@ -1,7 +1,10 @@
 package Application.Client.Controller;
 
+import Application.Client.Services.TaskServices;
 import Application.Main;
 import Application.Shared.Model.Task;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +19,11 @@ import java.util.ResourceBundle;
 public class MainView implements Initializable, IMain
 {
     @FXML
-    private ListView<Task> allListView = new ListView<>();
+    private static final ListView<Task> allListView = new ListView<>();
     @FXML
-    private ListView<Task> ownListView = new ListView<>();
+    private static final ListView<Task> ownListView = new ListView<>();
     @FXML
-    private ListView<Task> sentListView = new ListView<>();
+    private static final ListView<Task> sentListView = new ListView<>();
     @FXML
     private TabPane tabPane;
 
@@ -62,6 +65,8 @@ public class MainView implements Initializable, IMain
                     alert.show();
                 else
                     task = allListView.getSelectionModel().getSelectedItem();
+
+
             }
             case 1 ->
             {
@@ -100,6 +105,8 @@ public class MainView implements Initializable, IMain
                 }
             }
         });
+
+
 
         ownListView.setCellFactory(param -> new ListCell<>()
         {
