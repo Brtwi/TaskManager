@@ -1,6 +1,6 @@
-import Application.Shared.Model.*;
+import Application.Model.Entities.Task;
+import Application.Model.Entities.User;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

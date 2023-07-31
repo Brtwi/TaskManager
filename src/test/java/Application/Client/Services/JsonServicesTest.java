@@ -1,7 +1,8 @@
 package Application.Client.Services;
 
-import Application.Shared.Model.Task;
-import Application.Shared.Model.User;
+import Application.Model.Entities.Task;
+import Application.Model.Entities.User;
+import Application.Model.Services.JsonServices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,5 @@
-import Application.Shared.Model.Task;
-import Application.Shared.Model.User;
+import Application.Model.Entities.Task;
+import Application.Model.Entities.User;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

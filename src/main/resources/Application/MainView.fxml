@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.MainView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ViewController.MainView">
    <children>
       <TabPane fx:id="tabPane" layoutX="14.0" layoutY="14.0" prefHeight="567.0" prefWidth="394.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -41,11 +41,11 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Untitled Tab">
+            <Tab closable="false" text="Received">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="listTest" layoutX="89.0" layoutY="14.0" prefHeight="466.0" prefWidth="200.0" />
+                        <ListView fx:id="receivedList" layoutX="89.0" layoutY="14.0" prefHeight="466.0" prefWidth="200.0" />
                      </children>
                   </AnchorPane>
               </content>

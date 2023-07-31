@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Client.Controller.OnlineUsers">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ViewController.OnlineUsers">
    <children>
       <ListView fx:id="usersList" prefHeight="248.0" prefWidth="400.0" />
       <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="155.0" layoutY="259.0" onAction="#cancel" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #10AD80;" text="Cancel" />
