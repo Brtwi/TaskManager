@@ -37,7 +37,8 @@ public class ListViewRenderTest extends FXTest
     @Test
     public void testListViewRendering() {
         // Given
-        Task task = new Task.TaskBuilder(new User("test", "Test"), "title", "description")
+        User user = new User.UserBuilder("test").password("test").email("test@example.com").build();
+        Task task = new Task.TaskBuilder(user, "title", "description")
                 .build();
 
         // When

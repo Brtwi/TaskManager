@@ -1,5 +1,6 @@
 package Application.Model.Entities;
 
+import Application.Model.State;
 import lombok.Data;
 
 import java.io.File;

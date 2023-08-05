@@ -24,4 +24,5 @@ module Application {
     opens Application.ViewController to javafx.fxml;
 
     opens Application.Icons to javafx.fxml;
+    exports Application.Model;
 }

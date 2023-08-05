@@ -21,14 +21,17 @@ public class Register
 
     public void signUp(ActionEvent event) throws IOException
     {
-        checkInfo();
+        if(checkInfo())
+        {
+
+        }
     }
 
     public void backToLogin(ActionEvent event) throws IOException
     {
     }
 
-    private void checkInfo() throws IOException
+    private boolean checkInfo() throws IOException
     {
         if(usernameTextF.getText().trim().isEmpty()
                 || emailTextF.getText().trim().isEmpty()
@@ -36,12 +39,11 @@ public class Register
         {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter required data.", ButtonType.OK);
             alert.show();
+            return false;
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Welcome " + usernameTextF.getText(), ButtonType.OK);
-            alert.show();
-            //main.changeScene("MainView.fxml");
+            return true;
         }
     }
 }

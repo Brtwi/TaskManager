@@ -1,25 +1,46 @@
 package Application.Model.Entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class User
 {
     private String username;
     private String password;
     private String email;
 
-    public User(String username, String password)
+    private User(UserBuilder builder)
     {
-        this.username = username;
-        this.password = password;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.email = builder.email;
     }
-    public User(String username)
+    public static class UserBuilder
     {
-        this.username = username;
+        private final String username;
+        private String password;
+        private String email;
+
+        public UserBuilder(String username)
+        {
+            this.username = username;
+        }
+
+        public UserBuilder password(String password)
+        {
+            this.password = password;
+            return this;
+        }
+
+        public UserBuilder email(String email)
+        {
+            this.email = email;
+            return this;
+        }
+
+        public User build()
+        {
+            return new User(this);
+        }
     }
 }

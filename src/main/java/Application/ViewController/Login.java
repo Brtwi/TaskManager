@@ -29,7 +29,7 @@ public class Login
 
     public void loginAction(ActionEvent event) throws IOException, InterruptedException
     {
-        viewModel.login(usernameTextF, passwordTextF);
+        viewModel.login();
     }
 
     public void continueLocally(ActionEvent event) throws IOException
@@ -47,5 +47,8 @@ public class Login
     {
         this.viewModel = loginViewModel;
         this.viewHandler = viewHandler;
+
+        usernameTextF.textProperty().bindBidirectional(loginViewModel.getUsername());
+        passwordTextF.textProperty().bindBidirectional(loginViewModel.getPassword());
     }
 }

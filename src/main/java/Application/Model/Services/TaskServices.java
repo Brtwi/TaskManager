@@ -3,6 +3,7 @@ package Application.Model.Services;
 import Application.Model.Entities.Task;
 import Application.Model.Entities.User;
 import Application.Model.TaskModel;
+import com.fasterxml.jackson.databind.JsonNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Data;
@@ -29,6 +30,11 @@ public class TaskServices
 
     public User genereteReceiverUser(String username)
     {
-        return new User(username);
+        return new User.UserBuilder(username).build();
+    }
+
+    public boolean login(JsonNode json)
+    {
+        return true;
     }
 }

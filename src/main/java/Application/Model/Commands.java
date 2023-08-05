@@ -1,4 +1,4 @@
-package Application.Model.Entities;
+package Application.Model;
 
 public class Commands
 {

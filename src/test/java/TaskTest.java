@@ -14,8 +14,8 @@ public class TaskTest
         //given
         String title = "title";
         String description = "description";
-        User creator = new User("creator", "password");
-        User receiver = new User("receiver", "passwd");
+        User creator = new User.UserBuilder("creator").password("password").build();
+        User receiver = new User.UserBuilder("receiver").password("password").build();
         ArrayList<File> files = new ArrayList<File>();
 
         //when

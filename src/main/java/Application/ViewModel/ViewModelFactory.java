@@ -1,24 +1,25 @@
 package Application.ViewModel;
 
 import Application.Model.ModelFactory;
+import lombok.Getter;
 
+@Getter
 public class ViewModelFactory
 {
-    private MainViewModel mainViewModel;
-    private LoginViewModel loginViewModel;
+    private final MainViewModel mainViewModel;
+    private final LoginViewModel loginViewModel;
+    private final RegisterViewModel registerViewModel;
+    private final NewTaskViewModel newTaskViewModel;
+    private final EditViewModel editViewModel;
+    private final OnlineUsersViewModel onlineUsersViewModel;
+
     public ViewModelFactory(ModelFactory modelFactory)
     {
         this.mainViewModel = new MainViewModel(modelFactory.getTaskModel());
         this.loginViewModel = new LoginViewModel(modelFactory.getUserModel());
-    }
-
-    public MainViewModel getMainViewModel()
-    {
-        return mainViewModel;
-    }
-
-    public LoginViewModel getLoginViewModel()
-    {
-        return loginViewModel;
+        this.registerViewModel = new RegisterViewModel(modelFactory.getDataModel());
+        this.newTaskViewModel = new NewTaskViewModel(modelFactory.getTaskModel());
+        this.editViewModel = new EditViewModel(modelFactory.getTaskModel());
+        this.onlineUsersViewModel = new OnlineUsersViewModel(modelFactory.getUserModel());
     }
 }

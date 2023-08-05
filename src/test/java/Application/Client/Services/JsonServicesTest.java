@@ -14,15 +14,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JsonServicesTest
 {
-    private final Task task = new Task.TaskBuilder(new User("TestUser"), "TestTitle", "TestDescription")
+    User user = new User.UserBuilder("test").build();
+    User receiver = new User.UserBuilder("testReceiver").build();
+    private final Task task = new Task.TaskBuilder(user, "TestTitle", "TestDescription")
             .files(List.of(new File("src/main/resources/Objects.BankAccount.json")))
-            .receiver(new User("TestReceiver"))
+            .receiver(receiver)
             .build();
 
     @Test
     void fromJson() throws JsonProcessingException
     {
-        User user = new User("TestUser", "password");
+        User user = new User.UserBuilder("test").password("test").build();
         JsonNode node = JsonServices.toJson(user);
         User testUser = JsonServices.fromJson(node, User.class);
 

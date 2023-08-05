@@ -1,7 +1,6 @@
 package Application.ViewController;
 
 import Application.Model.Services.TaskServices;
-import Application.Model.Entities.IUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class NewTask implements IUser
+public class NewTask
 {
     @FXML
     private TextField titleTextField;
