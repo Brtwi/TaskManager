@@ -48,7 +48,7 @@ public class Login
         this.viewModel = loginViewModel;
         this.viewHandler = viewHandler;
 
-        usernameTextF.textProperty().bindBidirectional(loginViewModel.getUsername());
-        passwordTextF.textProperty().bindBidirectional(loginViewModel.getPassword());
+        usernameTextF.textProperty().bind(loginViewModel.getUsername());
+        passwordTextF.textProperty().bind(loginViewModel.getPassword());
     }
 }

@@ -1,8 +1,6 @@
 package Application.ViewController;
 
-import Application.StartTaskManager;
 import Application.TaskManager;
-import Application.ViewModel.MainViewModel;
 import Application.ViewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,9 +42,19 @@ public class ViewHandler
 
     public void changeScene(String fxml) throws IOException
     {
-        Parent pane = FXMLLoader.load(Objects.requireNonNull(TaskManager.class.getResource(fxml)));
-        stage.setScene(new Scene(pane));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TaskManager.class.getResource(fxml));
+        Parent root = loader.load();
+
+        if(fxml.contains("RegisterView"))
+        {
+            Register view = loader.getController();
+            view.init(viewModelFactory.getRegisterViewModel(), this);
+        }
+
+        stage.setScene(new Scene(root));
         stage.centerOnScreen();
+
     }
 
     public void openDialog(String fxml, String title) throws IOException

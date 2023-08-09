@@ -8,17 +8,18 @@ import java.util.List;
 @Data
 public class Task
 {
-    private final String ID;
-    private User creator;
+    //private final String ID;
+    private String id;
+    private String creator;
     private String title;
     private String description;
     private State state;
-    private User receiver;
+    private String receiver;
     private List<File> files;
 
     private Task(TaskBuilder builder)
     {
-        this.ID = builder.ID;
+        //this.ID = builder.ID;
         this.creator = builder.creator;
         this.title = builder.title;
         this.description = builder.description;
@@ -29,27 +30,26 @@ public class Task
 
     public static class TaskBuilder
     {
-        private static int IDint = 1;
-        private String ID;
-        private User creator;
-        private String title;
-        private String description;
-        private State state;
+        //private final String ID;
+        private final String creator;
+        private final String title;
+        private final String description;
+        private final State state;
 
         //optional
-        private User receiver;
+        private String receiver;
         private List<File> files;
 
-        public TaskBuilder(User creator, String title, String description)
+        public TaskBuilder(String creator, String title, String description)
         {
-            this.ID = String.valueOf(IDint++);
+
             this.creator = creator;
             this.title = title;
             this.description = description;
             this.state = State.TODO;
         }
 
-        public TaskBuilder receiver(User receiver)
+        public TaskBuilder receiver(String receiver)
         {
             this.receiver = receiver;
             return this;

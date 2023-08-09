@@ -14,13 +14,11 @@ public class TaskTest
         //given
         String title = "title";
         String description = "description";
-        User creator = new User.UserBuilder("creator").password("password").build();
-        User receiver = new User.UserBuilder("receiver").password("password").build();
         ArrayList<File> files = new ArrayList<File>();
 
         //when
-        Task task = new Task.TaskBuilder(creator,title,description)
-                .receiver(receiver)
+        Task task = new Task.TaskBuilder("creator",title,description)
+                .receiver("receiver")
                 .files(files)
                 .build();
 

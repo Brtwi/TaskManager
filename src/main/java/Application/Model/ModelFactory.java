@@ -4,7 +4,7 @@ public class ModelFactory
 {
     private ITaskModel taskModel;
     private UserModel userModel;
-    private IDataModel dataModel;
+   // private IDataModel dataModel;
 
     public ITaskModel getTaskModel()
     {
@@ -18,6 +18,6 @@ public class ModelFactory
 
     public IDataModel getDataModel()
     {
-        return dataModel == null ? dataModel = new DataModel() : dataModel;
+        return null; //dataModel == null ? dataModel = new DataModel() : dataModel;
     }
 }

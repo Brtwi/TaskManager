@@ -1,5 +1,5 @@
 package Application.Model;
 
-public class DataModel implements IDataModel
+public class DataModel
 {
 }

@@ -6,9 +6,12 @@ module Application {
             requires com.dlsc.formsfx;
             requires net.synedra.validatorfx;
                 requires org.kordamp.bootstrapfx.core;
+
     requires java.sql;
+    requires java.net.http;
     requires com.microsoft.sqlserver.jdbc;
     requires lombok;
+    requires com.google.gson;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.jfoenix;

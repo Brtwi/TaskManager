@@ -14,11 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JsonServicesTest
 {
-    User user = new User.UserBuilder("test").build();
-    User receiver = new User.UserBuilder("testReceiver").build();
-    private final Task task = new Task.TaskBuilder(user, "TestTitle", "TestDescription")
+    private final Task task = new Task.TaskBuilder("creator", "TestTitle", "TestDescription")
             .files(List.of(new File("src/main/resources/Objects.BankAccount.json")))
-            .receiver(receiver)
+            .receiver("receiver")
             .build();
 
     @Test
