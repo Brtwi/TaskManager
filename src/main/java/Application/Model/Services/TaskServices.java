@@ -32,9 +32,4 @@ public class TaskServices
     {
         return new User.UserBuilder(username).build();
     }
-
-    public boolean login(JsonNode json)
-    {
-        return true;
-    }
 }

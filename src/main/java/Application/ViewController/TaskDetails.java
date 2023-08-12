@@ -1,5 +1,6 @@
 package Application.ViewController;
 
+import Application.ViewModel.TaskDetailsViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +31,7 @@ public class TaskDetails implements Initializable
     private Button editAddButton;
     @FXML
     private Button cancelButton;
+    private TaskDetailsViewModel viewModel;
 
     public void edit(ActionEvent event)
     {
@@ -61,5 +63,10 @@ public class TaskDetails implements Initializable
     private void loadTask()
     {
 
+    }
+
+    public void init(TaskDetailsViewModel taskDetailsViewModel)
+    {
+        this.viewModel = taskDetailsViewModel;
     }
 }

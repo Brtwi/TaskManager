@@ -24,7 +24,7 @@ public class RegisterViewModel
         this.email = new SimpleStringProperty();
     }
 
-    public boolean signup() throws URISyntaxException, IOException, InterruptedException
+    public boolean signup()
     {
         return userModel.register(username.getValue(), password.getValue(), email.getValue());
     }

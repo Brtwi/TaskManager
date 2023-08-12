@@ -5,68 +5,105 @@ import Application.ViewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class ViewHandler
 {
     private final Stage stage;
     private final ViewModelFactory viewModelFactory;
+
     public ViewHandler(Stage stage, ViewModelFactory viewModelFactory)
     {
         this.stage = stage;
         this.viewModelFactory = viewModelFactory;
     }
 
-    public void start() throws IOException
+    public void start()
     {
-        openView();
+        changeScene(FXMLNames.LOGIN_VIEW);
     }
 
-    private void openView() throws IOException
+    public void changeScene(String fxml)
     {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(TaskManager.class.getResource("LoginView.fxml"));
-
-        Parent root = fxmlLoader.load();
-        Login view = fxmlLoader.getController();
-        view.init(viewModelFactory.getLoginViewModel(), this);
-
-        stage.setTitle("Task manager");
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    public void changeScene(String fxml) throws IOException
-    {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TaskManager.class.getResource(fxml));
-        Parent root = loader.load();
-
-        if(fxml.contains("RegisterView"))
+        try
         {
-            Register view = loader.getController();
-            view.init(viewModelFactory.getRegisterViewModel(), this);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TaskManager.class.getResource(fxml));
+            Parent root = loader.load();
+
+            initViewController(fxml, loader);
+
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        }catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error while loading screen");
+            alert.show();
         }
-
-        stage.setScene(new Scene(root));
-        stage.centerOnScreen();
-
     }
 
-    public void openDialog(String fxml, String title) throws IOException
+    public void openDialog(String fxml, String title)
     {
         Stage dialog = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
-        dialog.setScene(new Scene(root));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(TaskManager.class.getResource(fxml));
+        Parent root;
+        try
+        {
+            root = loader.load();
+            dialog.setScene(new Scene(root));
 
-        dialog.initOwner(stage);
-        dialog.initModality(Modality.WINDOW_MODAL);
-        dialog.setTitle(title);
-        dialog.show();
-        dialog.centerOnScreen();
+            initViewController(fxml, loader);
+
+            dialog.initOwner(stage);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.setTitle(title);
+            dialog.show();
+            dialog.centerOnScreen();
+        } catch (IOException ignored)
+        {
+        }
+    }
+
+    private void initViewController(String fxmlName, FXMLLoader loader)
+    {
+        switch (fxmlName)
+        {
+            case FXMLNames.MAIN_VIEW ->
+            {
+                MainView view = loader.getController();
+                view.init(viewModelFactory.getMainViewModel(), this);
+            }
+            case FXMLNames.REGISTER_VIEW ->
+            {
+                Register view = loader.getController();
+                view.init(viewModelFactory.getRegisterViewModel(), this);
+            }
+            case FXMLNames.LOGIN_VIEW ->
+            {
+                Login view = loader.getController();
+                view.init(viewModelFactory.getLoginViewModel(), this);
+            }
+            case FXMLNames.NEW_TASK_VIEW ->
+            {
+                NewTask view = loader.getController();
+                view.init(viewModelFactory.getNewTaskViewModel());
+            }
+            case FXMLNames.ONLINE_USERS_VIEW ->
+            {
+                OnlineUsers view = loader.getController();
+                view.init(viewModelFactory.getOnlineUsersViewModel());
+            }
+            case FXMLNames.TASK_DETAILS_VIEW ->
+            {
+                TaskDetails view = loader.getController();
+                view.init(viewModelFactory.getTaskDetailsViewModel());
+            }
+        }
     }
 }

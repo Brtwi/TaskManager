@@ -1,60 +1,57 @@
 package Application.ViewController;
 
 import Application.Model.Entities.Task;
-import Application.Model.TaskModel;
 import Application.ViewModel.MainViewModel;
-import com.jfoenix.controls.JFXChip;
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TabPane;
 import javafx.util.Callback;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MainView
 {
     @FXML
-    private static final JFXListView<Task> allListView = new JFXListView<>();
+    private JFXListView<Task> allTaskView;
     @FXML
-    private static final JFXListView<Task> ownListView = new JFXListView<>();
+    private JFXListView<Task> ownListView;
     @FXML
-    private static final JFXListView<Task> sentListView = new JFXListView<>();
+    private JFXListView<Task> sentListView;
     @FXML
-    private static final JFXListView<Task> receivedListView = new JFXListView<>();
+    private JFXListView<Task> receivedListView;
     @FXML
     private TabPane tabPane;
+
     private MainViewModel viewModel;
+    private ViewHandler viewHandler;
 
 
-    public void init(MainViewModel mainViewModel)
+    public void init(MainViewModel mainViewModel, ViewHandler viewHandler)
     {
         this.viewModel = mainViewModel;
+        this.viewHandler = viewHandler;
 
         setupLists();
     }
 
-    public void addTask(ActionEvent event) throws IOException
+    public void addTask()
     {
-
+        viewHandler.openDialog(FXMLNames.NEW_TASK_VIEW, "New task");
     }
 
-    public void delete(ActionEvent event) throws IOException
+    public void delete()
     {
         //TODO find actual list, check if task is selected, delete
-
     }
 
-    public void logout(ActionEvent event) throws IOException
+    public void logout()
     {
 
     }
 
-    public void edit(ActionEvent event) throws IOException
+    public void edit()
     {
 
     }
@@ -68,10 +65,10 @@ public class MainView
         {
             case 0 ->
             {
-                if (allListView.getSelectionModel().getSelectedItem() == null)
+                if (allTaskView.getSelectionModel().getSelectedItem() == null)
                     alert.show();
                 else
-                    task = allListView.getSelectionModel().getSelectedItem();
+                    task = allTaskView.getSelectionModel().getSelectedItem();
 
 
             }
@@ -95,15 +92,15 @@ public class MainView
 
     private void setupLists()
     {
-        allListView.setCellFactory((Callback)(new TaskCellListRender()));
+        allTaskView.setCellFactory((Callback)new TaskCellListRender());
         ownListView.setCellFactory((Callback)(new TaskCellListRender()));
         sentListView.setCellFactory((Callback)(new TaskCellListRender()));
         receivedListView.setCellFactory((Callback)(new TaskCellListRender()));
 
-        allListView.setItems(viewModel.getListToBind(TaskModel.ALL));
-        ownListView.setItems(viewModel.getListToBind(TaskModel.OWN));
-        sentListView.setItems(viewModel.getListToBind(TaskModel.SENT));
-        receivedListView.setItems(viewModel.getListToBind(TaskModel.RECEIVED));
+        allTaskView.setItems(viewModel.getTasks());
+        ownListView.setItems(viewModel.getOwnTask());
+        sentListView.setItems(viewModel.getSentTask());
+        receivedListView.setItems(viewModel.getReceivedTask());
     }
 
     private static class TaskCellListRender implements Callback<JFXListView<Task>, JFXListCell<Task>>

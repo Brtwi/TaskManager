@@ -18,8 +18,8 @@ public class LoginViewModel
         this.password = new SimpleStringProperty();
     }
 
-    public void login()
+    public boolean login()
     {
-        userModel.login(username.toString(), password.toString());
+        return userModel.login(username.getValue(), password.getValue());
     }
 }

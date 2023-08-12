@@ -1,14 +1,14 @@
 package Application.ViewController;
 
-import Application.Model.Services.TaskServices;
-import javafx.event.ActionEvent;
+
+import Application.ViewModel.NewTaskViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewTask
 {
@@ -19,37 +19,50 @@ public class NewTask
     @FXML
     private Button cancelButton;
     @FXML
+    private Button saveButton;
+    @FXML
     private Label fileAmountLabel;
     @FXML
     private Label receiverLabel;
-    private final TaskServices taskServices;
 
-    public NewTask()
+    private NewTaskViewModel viewModel;
+    private List<File> files = new ArrayList<>();
+    private Stage stage;
+
+    public void init(NewTaskViewModel newTaskViewModel)
     {
-        this.taskServices = new TaskServices();
+        this.viewModel = newTaskViewModel;
+
+        this.stage = (Stage) cancelButton.getScene().getWindow();
+
+        this.viewModel.getTitle().bind(this.titleTextField.textProperty());
+        this.viewModel.getDescription().bind(this.descriptionTextField.textProperty());
+        this.files = this.viewModel.getFiles();
     }
 
-    public void cancel(ActionEvent event)
+    public void cancel()
     {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
-    public void save(ActionEvent event)
+    public void save()
+    {
+        if(checkFields())
+        {
+            viewModel.saveTask();
+            stage.close();
+        }
+    }
+
+    public void send()
     {
 
     }
 
-    public void send(ActionEvent event) throws IOException
-    {
-
-    }
-
-    public void addFiles(ActionEvent event)
+    public void addFiles()
     {
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-
+        files.add(fileChooser.showOpenDialog(null));
     }
 
     private boolean checkFields()

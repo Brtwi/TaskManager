@@ -4,10 +4,6 @@ import Application.Model.Entities.User;
 import Application.Model.Network.Connection;
 import Application.Model.Network.HTTPRequest;
 import Application.Model.Network.SocketHandler;
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class NetworkServices
 {
@@ -19,7 +15,7 @@ public class NetworkServices
         this.socketHandler = Connection.getSocketHandler();
     }
 
-    public boolean registerNewUser(String username, String password, String email) throws URISyntaxException, IOException, InterruptedException
+    public boolean registerNewUser(String username, String password, String email)
     {
         User newUser = new User.UserBuilder(username)
                 .password(password)
@@ -31,5 +27,10 @@ public class NetworkServices
     public void connect()
     {
 
+    }
+
+    public boolean login(User user)
+    {
+        return HTTPRequest.loginRequest(user);
     }
 }

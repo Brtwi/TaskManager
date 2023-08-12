@@ -1,17 +1,11 @@
 package Application.ViewController;
 
 import Application.ViewModel.LoginViewModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Login
 {
@@ -20,26 +14,46 @@ public class Login
     @FXML
     private PasswordField passwordTextF;
     @FXML
-    private Button signInButton;
-    @FXML
     private Label errorLabel;
     private ViewHandler viewHandler;
     private LoginViewModel viewModel;
     
 
-    public void loginAction(ActionEvent event) throws IOException, InterruptedException
+    public void loginAction()
     {
-        viewModel.login();
+        if(viewModel.login())
+        {
+            viewHandler.changeScene(FXMLNames.MAIN_VIEW);
+        }
+        else
+        {
+            errorLabel.setVisible(true);
+            Thread errorLabelThread = new Thread(() ->
+            {
+                try
+                {
+                    for (int i = 255; i >= 0; i--)
+                    {
+                        errorLabel.setOpacity((float) i / 255);
+                        Thread.sleep(5);
+                    }
+                    errorLabel.setVisible(false);
+                }catch (InterruptedException ignored)
+                {
+                }
+            });
+            errorLabelThread.start();
+        }
     }
 
-    public void continueLocally(ActionEvent event) throws IOException
+    public void continueLocally()
     {
-        viewHandler.changeScene("MainView.fxml");
+        viewHandler.changeScene(FXMLNames.MAIN_VIEW);
     }
 
-    public void signUp(ActionEvent event) throws IOException
+    public void signUp()
     {
-        viewHandler.changeScene("RegisterView.fxml");
+        viewHandler.changeScene(FXMLNames.REGISTER_VIEW);
     }
 
 
@@ -48,7 +62,7 @@ public class Login
         this.viewModel = loginViewModel;
         this.viewHandler = viewHandler;
 
-        usernameTextF.textProperty().bind(loginViewModel.getUsername());
-        passwordTextF.textProperty().bind(loginViewModel.getPassword());
+        loginViewModel.getUsername().bind(this.usernameTextF.textProperty());
+        loginViewModel.getPassword().bind(this.passwordTextF.textProperty());
     }
 }

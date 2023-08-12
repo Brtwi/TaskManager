@@ -1,8 +1,6 @@
 package Application.Model.Services;
 
-
-import java.io.IOException;
-import java.net.URISyntaxException;
+import Application.Model.Entities.User;
 
 public class UserServices
 {
@@ -12,9 +10,13 @@ public class UserServices
     {
         this.networkServices = new NetworkServices();
     }
-    public boolean registerUser(String username, String password, String email) throws URISyntaxException, IOException, InterruptedException
+    public boolean registerUser(String username, String password, String email)
     {
         return networkServices.registerNewUser(username, password, email);
     }
 
+    public boolean login(User user)
+    {
+        return networkServices.login(user);
+    }
 }
