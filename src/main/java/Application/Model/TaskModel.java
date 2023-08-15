@@ -1,35 +1,27 @@
 package Application.Model;
 
 import Application.Model.Entities.Task;
+import Application.Model.Services.NetworkServices;
+import Application.Model.Services.TaskServices;
 import lombok.Data;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 @Data
 public class TaskModel implements ITaskModel
 {
     private final ArrayList<Task> tasks = new ArrayList<>();
     private final ArrayList<ModelListListeners> listListeners = new ArrayList<>();
-    private final List<File> fileCache = new LinkedList<>();
+
+    private final TaskServices taskServices = new TaskServices();
+    private final NetworkServices networkServices = new NetworkServices();
 
     @Override
     public void saveTask(String title, String description, String receiver, List<File> files)
     {
-        Task.TaskBuilder taskBuilder = new Task.TaskBuilder(UserModel.getUser().getUsername(), title, description);
-
-        if (receiver != null)
-        {
-            taskBuilder.receiver(receiver);
-        }
-        if (files != null)
-        {
-            taskBuilder.files(files);
-        }
-
-        tasks.add(taskBuilder.build());
-        notifyListListeners(taskBuilder.build());
+        tasks.add(taskServices.saveTask(title, description, receiver, files));
+        notifyListListeners(tasks.get(tasks.size() - 1));
     }
 
     public List<Task> getTasks()
@@ -44,9 +36,26 @@ public class TaskModel implements ITaskModel
 
     private void notifyListListeners(Task task)
     {
-        for(ModelListListeners listener : listListeners)
+        listListeners.forEach(listener -> listener.onAddedItem(task));
+    }
+
+    public boolean pullTasksFromServer()
+    {
+        List<Task> pulledTasks = networkServices.pullTasksFromServer();
+        if(pulledTasks != null)
         {
-            listener.onAddedItem(task);
+            synchronizeWithPulled(pulledTasks);
+            return true;
+        }
+        return false;
+    }
+
+    private void synchronizeWithPulled(List<Task> pulledTasks)
+    {
+        this.tasks.addAll(pulledTasks);
+        for(Task task : pulledTasks)
+        {
+            notifyListListeners(task);
         }
     }
 }

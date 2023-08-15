@@ -5,9 +5,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Data;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 @Data
 public class RegisterViewModel
 {

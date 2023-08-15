@@ -41,16 +41,16 @@ public class Register
         }
     }
 
-    public void backToLogin(ActionEvent event)
+    public void backToLogin()
     {
         viewHandler.changeScene(FXMLNames.LOGIN_VIEW);
     }
 
     private boolean checkInfo()
     {
-        if(usernameTextF.getText().trim().isEmpty()
-                || emailTextF.getText().trim().isEmpty()
-                || passwordField.getText().trim().isEmpty())
+        if(usernameTextF.textProperty() == null || usernameTextF.getText().trim().isEmpty()
+                || emailTextF.textProperty() == null || emailTextF.getText().trim().isEmpty()
+                || passwordField.getText() == null || passwordField.getText().trim().isEmpty())
         {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter required data.", ButtonType.OK);
             alert.show();

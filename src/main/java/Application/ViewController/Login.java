@@ -1,10 +1,12 @@
 package Application.ViewController;
 
 import Application.ViewModel.LoginViewModel;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 
 
 public class Login
@@ -28,21 +30,12 @@ public class Login
         else
         {
             errorLabel.setVisible(true);
-            Thread errorLabelThread = new Thread(() ->
-            {
-                try
-                {
-                    for (int i = 255; i >= 0; i--)
-                    {
-                        errorLabel.setOpacity((float) i / 255);
-                        Thread.sleep(5);
-                    }
-                    errorLabel.setVisible(false);
-                }catch (InterruptedException ignored)
-                {
-                }
-            });
-            errorLabelThread.start();
+
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), errorLabel);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setOnFinished(event -> errorLabel.setVisible(false));
+            fadeTransition.play();
         }
     }
 

@@ -32,7 +32,6 @@ public class MainView
     {
         this.viewModel = mainViewModel;
         this.viewHandler = viewHandler;
-
         setupLists();
     }
 
@@ -53,6 +52,11 @@ public class MainView
 
     public void edit()
     {
+        checkItemSelection();
+    }
+
+    private void checkItemSelection()
+    {
 
     }
 
@@ -65,30 +69,26 @@ public class MainView
         {
             case 0 ->
             {
-                if (allTaskView.getSelectionModel().getSelectedItem() == null)
+                if (allTaskView.getSelectionModel().isEmpty())
                     alert.show();
                 else
                     task = allTaskView.getSelectionModel().getSelectedItem();
-
-
             }
             case 1 ->
             {
-                if (ownListView.getSelectionModel().getSelectedItem() == null)
+                if (ownListView.getSelectionModel().isEmpty())
                     alert.show();
                 task = ownListView.getSelectionModel().getSelectedItem();
             }
             case 2 ->
             {
-                if (sentListView.getSelectionModel().getSelectedItem() == null)
+                if (sentListView.getSelectionModel().isEmpty())
                     alert.show();
                 task = sentListView.getSelectionModel().getSelectedItem();
             }
         }
         return task;
     }
-
-
 
     private void setupLists()
     {

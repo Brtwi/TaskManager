@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import lombok.Getter;
 
+
 @Getter
 public class MainViewModel implements ModelListListeners
 {
@@ -40,4 +41,6 @@ public class MainViewModel implements ModelListListeners
     {
         Platform.runLater(() -> tasks.add(item));
     }
+
+
 }

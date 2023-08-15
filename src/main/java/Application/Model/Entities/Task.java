@@ -17,6 +17,11 @@ public class Task
     private String receiver;
     private List<File> files;
 
+    public Task()
+    {
+
+    }
+
     private Task(TaskBuilder builder)
     {
         //this.ID = builder.ID;

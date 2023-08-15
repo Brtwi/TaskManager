@@ -9,4 +9,5 @@ public interface ITaskModel
     List<Task> getTasks();
     void saveTask(String title, String description, String receiver, List<File> files);
     void addListListener(ModelListListeners listener);
+    boolean pullTasksFromServer();
 }

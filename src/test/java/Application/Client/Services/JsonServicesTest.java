@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +29,33 @@ class JsonServicesTest
         User testUser = JsonServices.fromJson(node, User.class);
 
         assertEquals(user, testUser);
+    }
+
+    @Test
+    void fromJsonArray() throws JsonProcessingException
+    {
+        String jsonArray = "[\n" +
+                "  {\n" +
+                "    \"creator\": \"John\",\n" +
+                "    \"title\": \"Finish Project\",\n" +
+                "    \"description\": \"Complete the final tasks for the project.\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"creator\": \"Alice\",\n" +
+                "    \"title\": \"Prepare Presentation\",\n" +
+                "    \"description\": \"Create a compelling presentation for the team.\"\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"creator\": \"Bob\",\n" +
+                "    \"title\": \"Review Code\",\n" +
+                "    \"description\": \"Go through the codebase and provide feedback.\"\n" +
+                "  }\n" +
+                "]";
+
+        List<Task> tasks = JsonServices.fromJsonArrayStringToTaskList(jsonArray);
+
+        assertEquals("Finish Project", tasks.get(0).getTitle());
+        assertEquals("Prepare Presentation", tasks.get(1).getTitle());
     }
 
     @Test

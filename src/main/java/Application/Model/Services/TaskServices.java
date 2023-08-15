@@ -3,14 +3,10 @@ package Application.Model.Services;
 import Application.Model.Entities.Task;
 import Application.Model.Entities.User;
 import Application.Model.TaskModel;
-import com.fasterxml.jackson.databind.JsonNode;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Application.Model.UserModel;
 import lombok.Data;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Data
@@ -18,14 +14,20 @@ public class TaskServices
 {
     private TaskModel taskModel;
 
-    public void saveTask(Task task)
+    public Task saveTask(String title, String description, String receiver, List<File> files)
     {
+        Task.TaskBuilder taskBuilder = new Task.TaskBuilder(UserModel.getUser().getUsername(), title, description);
 
-    }
+        if (receiver != null)
+        {
+            taskBuilder.receiver(receiver);
+        }
+        if (files != null)
+        {
+            taskBuilder.files(files);
+        }
 
-    public void addFileToCache(File file)
-    {
-        taskModel.getFileCache().add(file);
+        return taskBuilder.build();
     }
 
     public User genereteReceiverUser(String username)
