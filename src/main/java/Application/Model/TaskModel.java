@@ -13,6 +13,7 @@ public class TaskModel implements ITaskModel
 {
     private final ArrayList<Task> tasks = new ArrayList<>();
     private final ArrayList<ModelListListeners> listListeners = new ArrayList<>();
+    private Task selectedTask = new Task();
 
     private final TaskServices taskServices = new TaskServices();
     private final NetworkServices networkServices = new NetworkServices();
@@ -23,10 +24,16 @@ public class TaskModel implements ITaskModel
         tasks.add(taskServices.saveTask(title, description, receiver, files));
         notifyListListeners(tasks.get(tasks.size() - 1));
     }
-
+    @Override
     public List<Task> getTasks()
     {
         return tasks;
+    }
+
+    @Override
+    public void setSelectedTask(Task selectedTask)
+    {
+        this.selectedTask = selectedTask;
     }
 
     public void addListListener(ModelListListeners listener)
@@ -37,6 +44,11 @@ public class TaskModel implements ITaskModel
     private void notifyListListeners(Task task)
     {
         listListeners.forEach(listener -> listener.onAddedItem(task));
+    }
+
+    private void notifyListListenersUpdate()
+    {
+        listListeners.forEach(ModelListListeners::onUpdatedItem);
     }
 
     public boolean pullTasksFromServer()
@@ -50,6 +62,19 @@ public class TaskModel implements ITaskModel
         return false;
     }
 
+    @Override
+    public void update(String title, String description, String state)
+    {
+        taskServices.updateTask(title, description, state, selectedTask);
+        notifyListListenersUpdate();
+    }
+
+    @Override
+    public void delete(Task taskToRemove)
+    {
+        tasks.remove(taskToRemove);
+    }
+
     private void synchronizeWithPulled(List<Task> pulledTasks)
     {
         this.tasks.addAll(pulledTasks);
@@ -58,4 +83,5 @@ public class TaskModel implements ITaskModel
             notifyListListeners(task);
         }
     }
+
 }

@@ -1,7 +1,6 @@
 package Application.Model.Services;
 
 import Application.Model.Entities.Task;
-import Application.Model.Entities.User;
 import Application.Model.TaskModel;
 import Application.Model.UserModel;
 import lombok.Data;
@@ -30,8 +29,10 @@ public class TaskServices
         return taskBuilder.build();
     }
 
-    public User genereteReceiverUser(String username)
+    public void updateTask(String title, String description, String state, Task taskToUpdate)
     {
-        return new User.UserBuilder(username).build();
+        taskToUpdate.setTitle(title);
+        taskToUpdate.setDescription(description);
+        taskToUpdate.setState(state);
     }
 }
