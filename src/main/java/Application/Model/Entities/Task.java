@@ -13,7 +13,7 @@ public class Task
     private String creator;
     private String title;
     private String description;
-    private State state;
+    private String state;
     private String receiver;
     private List<File> files;
 
@@ -39,7 +39,7 @@ public class Task
         private final String creator;
         private final String title;
         private final String description;
-        private final State state;
+        private final String state;
 
         //optional
         private String receiver;

@@ -70,6 +70,7 @@ public class ViewHandler
         }
     }
 
+
     private void initViewController(String fxmlName, FXMLLoader loader)
     {
         switch (fxmlName)
@@ -101,8 +102,8 @@ public class ViewHandler
             }
             case FXMLNames.TASK_DETAILS_VIEW ->
             {
-                TaskDetails view = loader.getController();
-                view.init(viewModelFactory.getTaskDetailsViewModel());
+                Edit view = loader.getController();
+                view.init(viewModelFactory.getEditViewModel());
             }
         }
     }

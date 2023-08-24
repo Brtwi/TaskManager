@@ -1,22 +1,8 @@
 package Application.Model;
 
-public enum State
+public class State
 {
-    TODO("to do"),
-    ACTIVE("active"),
-    DONE("done");
-
-    private final String displayText;
-
-    State(String displayText)
-    {
-        this.displayText = displayText;
-    }
-
-    @Override
-    public String toString()
-    {
-        return displayText;
-    }
-
+    public static final String TODO = "to do";
+    public static final String IN_PROGRESS = "in progress";
+    public static final String DONE = "done";
 }

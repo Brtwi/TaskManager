@@ -10,7 +10,7 @@ public class ViewModelFactory
     private final LoginViewModel loginViewModel;
     private final RegisterViewModel registerViewModel;
     private final NewTaskViewModel newTaskViewModel;
-    private final TaskDetailsViewModel taskDetailsViewModel;
+    private final EditViewModel editViewModel;
     private final OnlineUsersViewModel onlineUsersViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory)
@@ -19,7 +19,7 @@ public class ViewModelFactory
         this.loginViewModel = new LoginViewModel(modelFactory.getUserModel(), modelFactory.getTaskModel());
         this.registerViewModel = new RegisterViewModel(modelFactory.getUserModel());
         this.newTaskViewModel = new NewTaskViewModel(modelFactory.getTaskModel());
-        this.taskDetailsViewModel = new TaskDetailsViewModel(modelFactory.getTaskModel());
+        this.editViewModel = new EditViewModel(modelFactory.getTaskModel());
         this.onlineUsersViewModel = new OnlineUsersViewModel(modelFactory.getUserModel());
     }
 }
