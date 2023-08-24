@@ -5,6 +5,8 @@ import Application.Model.ITaskModel;
 import Application.Model.ModelListListeners;
 import Application.Model.UserModel;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,6 +21,7 @@ public class MainViewModel implements ModelListListeners
     private final FilteredList<Task> ownTask;
     private final FilteredList<Task> sentTask;
     private final FilteredList<Task> receivedTask;
+    private final ObjectProperty<Task> selectedTask;
 
 
     public MainViewModel(ITaskModel taskModel)
@@ -34,6 +37,11 @@ public class MainViewModel implements ModelListListeners
 
         this.receivedTask = tasks.filtered(task -> task.getReceiver() != null &&
                 task.getReceiver().equals(UserModel.getUser().getUsername()));
+
+        this.selectedTask = new SimpleObjectProperty<>();
+
+        this.selectedTask.addListener(((observableValue, oldValue, newValue) ->
+                taskModel.setSelectedTask(newValue)));
     }
 
     @Override
@@ -42,5 +50,17 @@ public class MainViewModel implements ModelListListeners
         Platform.runLater(() -> tasks.add(item));
     }
 
+    @Override
+    public void onUpdatedItem()
+    {
+        Task tempTask = selectedTask.getValue();
+        selectedTask.setValue(null);
+        selectedTask.setValue(tempTask);
+    }
 
+    public void deleteTask()
+    {
+        taskModel.delete(selectedTask.getValue());
+        tasks.remove(selectedTask.getValue());
+    }
 }

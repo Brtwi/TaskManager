@@ -42,54 +42,62 @@ public class MainView
 
     public void delete()
     {
-        //TODO find actual list, check if task is selected, delete
+        if(isTaskSelected())
+        {
+            viewModel.deleteTask();
+        }
     }
 
     public void logout()
     {
-
     }
 
     public void edit()
     {
-        checkItemSelection();
+        if(isTaskSelected())
+        {
+            viewHandler.openDialog("EditView.fxml", "Edit task");
+        }
     }
 
-    private void checkItemSelection()
-    {
-
-    }
-
-    private Task getSelectedTask()
+    public boolean isTaskSelected()
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please select task to edit", ButtonType.OK);
-        Task task = null;
 
         switch (tabPane.getSelectionModel().getSelectedIndex())
         {
             case 0 ->
             {
                 if (allTaskView.getSelectionModel().isEmpty())
+                {
                     alert.show();
-                else
-                    task = allTaskView.getSelectionModel().getSelectedItem();
+                    return false;
+                }
+                return true;
             }
             case 1 ->
             {
                 if (ownListView.getSelectionModel().isEmpty())
+                {
                     alert.show();
-                task = ownListView.getSelectionModel().getSelectedItem();
+                    return false;
+                }
+                return true;
             }
             case 2 ->
             {
                 if (sentListView.getSelectionModel().isEmpty())
+                {
                     alert.show();
-                task = sentListView.getSelectionModel().getSelectedItem();
+                    return false;
+                }
+                return true;
             }
         }
-        return task;
+        return false;
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private void setupLists()
     {
         allTaskView.setCellFactory((Callback)new TaskCellListRender());
@@ -101,6 +109,26 @@ public class MainView
         ownListView.setItems(viewModel.getOwnTask());
         sentListView.setItems(viewModel.getSentTask());
         receivedListView.setItems(viewModel.getReceivedTask());
+
+        allTaskView.getSelectionModel().selectedItemProperty().addListener((observable,oldItem ,newItem) ->
+                viewModel.getSelectedTask().set(newItem));
+
+        ownListView.getSelectionModel().selectedItemProperty().addListener((observable,oldItem ,newItem) ->
+                viewModel.getSelectedTask().set(newItem));
+
+        sentListView.getSelectionModel().selectedItemProperty().addListener((observable,oldItem ,newItem) ->
+                viewModel.getSelectedTask().set(newItem));
+
+        receivedListView.getSelectionModel().selectedItemProperty().addListener((observable,oldItem ,newItem) ->
+                viewModel.getSelectedTask().set(newItem));
+
+        viewModel.getSelectedTask().addListener((observable) ->
+        {
+            allTaskView.refresh();
+            ownListView.refresh();
+            sentListView.refresh();
+            receivedListView.refresh();
+        });
     }
 
     private static class TaskCellListRender implements Callback<JFXListView<Task>, JFXListCell<Task>>
