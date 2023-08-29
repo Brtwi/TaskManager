@@ -93,7 +93,7 @@ public class ViewHandler
             case FXMLNames.NEW_TASK_VIEW ->
             {
                 NewTask view = loader.getController();
-                view.init(viewModelFactory.getNewTaskViewModel());
+                view.init(viewModelFactory.getNewTaskViewModel(), this);
             }
             case FXMLNames.ONLINE_USERS_VIEW ->
             {
