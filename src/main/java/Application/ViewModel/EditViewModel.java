@@ -1,11 +1,17 @@
 package Application.ViewModel;
 
 import Application.Model.ITaskModel;
+import Application.Model.State;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -16,8 +22,9 @@ public class EditViewModel
     private final StringProperty title;
     private final StringProperty description;
     private final StringProperty receiver;
-    private final StringProperty state;
+    private final ObjectProperty<String> state;
     private final StringProperty filenames;
+    private final ObservableList<String> states;
 
     public EditViewModel(ITaskModel taskModel)
     {
@@ -26,8 +33,13 @@ public class EditViewModel
         this.title = new SimpleStringProperty();
         this.description = new SimpleStringProperty();
         this.receiver = new SimpleStringProperty();
-        this.state = new SimpleStringProperty();
+        this.state = new SimpleObjectProperty<>();
         this.filenames = new SimpleStringProperty();
+        this.states = FXCollections.observableArrayList(Arrays.asList(
+                State.TODO,
+                State.IN_PROGRESS,
+                State.DONE
+        ));
     }
 
     public void loadTask()

@@ -1,6 +1,7 @@
 package Application.ViewController;
 
 import Application.ViewModel.EditViewModel;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,8 +19,6 @@ public class Edit
     @FXML
     private TextArea descriptionTextF;
     @FXML
-    private TextField stateTextF;
-    @FXML
     private TextField receiverTextF;
     @FXML
     private Label filesLabel;
@@ -27,6 +26,8 @@ public class Edit
     private Button cancelButton;
     @FXML
     private Button editSaveButton;
+    @FXML
+    private JFXComboBox<String> stateComboBox;
     private EditViewModel viewModel;
 
     public void init(EditViewModel editViewModel)
@@ -62,7 +63,7 @@ public class Edit
     {
         titleTextF.setEditable(enabled);
         descriptionTextF.setEditable(enabled);
-        stateTextF.setEditable(enabled);
+        stateComboBox.setDisable(!enabled);
     }
 
     private void bindFields()
@@ -71,7 +72,8 @@ public class Edit
         this.viewModel.getTitle().bindBidirectional(this.titleTextF.textProperty());
         this.viewModel.getDescription().bindBidirectional(this.descriptionTextF.textProperty());
         this.viewModel.getReceiver().bindBidirectional(this.receiverTextF.textProperty());
-        this.viewModel.getState().bindBidirectional(this.stateTextF.textProperty());
         this.viewModel.getFilenames().bindBidirectional(this.filesLabel.textProperty());
+        this.stateComboBox.setItems(this.viewModel.getStates());
+        this.viewModel.getState().bindBidirectional(this.stateComboBox.valueProperty());
     }
 }

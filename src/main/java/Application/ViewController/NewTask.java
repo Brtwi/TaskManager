@@ -21,23 +21,29 @@ public class NewTask
     @FXML
     private Button saveButton;
     @FXML
+    private Button sendButton;
+    @FXML
     private Label fileAmountLabel;
     @FXML
     private Label receiverLabel;
 
     private NewTaskViewModel viewModel;
+    private ViewHandler viewHandler;
     private List<File> files = new ArrayList<>();
     private Stage stage;
 
-    public void init(NewTaskViewModel newTaskViewModel)
+    public void init(NewTaskViewModel newTaskViewModel, ViewHandler viewHandler)
     {
         this.viewModel = newTaskViewModel;
+        this.viewHandler = viewHandler;
 
         this.stage = (Stage) cancelButton.getScene().getWindow();
 
         this.viewModel.getTitle().bind(this.titleTextField.textProperty());
         this.viewModel.getDescription().bind(this.descriptionTextField.textProperty());
         this.files = this.viewModel.getFiles();
+
+        this.sendButton.setDisable(!viewModel.isUserConnected());
     }
 
     public void cancel()
@@ -56,7 +62,7 @@ public class NewTask
 
     public void send()
     {
-
+        viewHandler.openDialog(FXMLNames.ONLINE_USERS_VIEW, "Online users");
     }
 
     public void addFiles()
