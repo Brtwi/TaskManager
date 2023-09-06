@@ -100,7 +100,7 @@ public class ViewHandler
                 OnlineUsers view = loader.getController();
                 view.init(viewModelFactory.getOnlineUsersViewModel());
             }
-            case FXMLNames.TASK_DETAILS_VIEW ->
+            case FXMLNames.EDIT_VIEW ->
             {
                 Edit view = loader.getController();
                 view.init(viewModelFactory.getEditViewModel());

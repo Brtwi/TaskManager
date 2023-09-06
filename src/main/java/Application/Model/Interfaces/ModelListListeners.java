@@ -1,4 +1,4 @@
-package Application.Model;
+package Application.Model.Interfaces;
 
 import Application.Model.Entities.Task;
 

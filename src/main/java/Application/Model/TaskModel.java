@@ -1,6 +1,8 @@
 package Application.Model;
 
 import Application.Model.Entities.Task;
+import Application.Model.Interfaces.ITaskModel;
+import Application.Model.Interfaces.ModelListListeners;
 import Application.Model.Services.NetworkServices;
 import Application.Model.Services.TaskServices;
 import lombok.Data;
@@ -83,5 +85,7 @@ public class TaskModel implements ITaskModel
             notifyListListeners(task);
         }
     }
+
+
 
 }

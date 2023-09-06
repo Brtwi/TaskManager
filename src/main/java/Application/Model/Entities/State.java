@@ -1,4 +1,4 @@
-package Application.Model;
+package Application.Model.Entities;
 
 public class State
 {

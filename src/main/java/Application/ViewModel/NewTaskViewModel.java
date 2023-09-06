@@ -1,6 +1,6 @@
 package Application.ViewModel;
 
-import Application.Model.ITaskModel;
+import Application.Model.Interfaces.ITaskModel;
 import Application.Model.UserModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

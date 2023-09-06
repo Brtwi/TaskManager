@@ -1,7 +1,7 @@
 package Application.ViewModel;
 
-import Application.Model.ITaskModel;
-import Application.Model.State;
+import Application.Model.Interfaces.ITaskModel;
+import Application.Model.Entities.State;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

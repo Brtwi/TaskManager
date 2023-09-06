@@ -1,6 +1,7 @@
-package Application.Model;
+package Application.Model.Interfaces;
 
 import Application.Model.Entities.Task;
+
 import java.io.File;
 import java.util.List;
 
