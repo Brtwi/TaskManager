@@ -1,11 +1,12 @@
 package Application.Model.Entities;
 
-import Application.Model.State;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.File;
 import java.util.List;
 @Data
+@AllArgsConstructor
 public class Task
 {
     //private final String ID;

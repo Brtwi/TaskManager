@@ -1,6 +1,6 @@
 package Application.ViewModel;
 
-import Application.Model.ITaskModel;
+import Application.Model.Interfaces.ITaskModel;
 import Application.Model.UserModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -21,6 +21,11 @@ public class LoginViewModel
         this.password = new SimpleStringProperty();
     }
 
+    public void continueLocally()
+    {
+        userModel.locally();
+    }
+
     public boolean login()
     {
         if(userModel.login(username.getValue(), password.getValue()))
@@ -32,6 +37,7 @@ public class LoginViewModel
     }
 
 
+    @SuppressWarnings("BusyWait")
     public void pullTasks()
     {
         Thread requestThread = new Thread(() ->

@@ -1,6 +1,7 @@
 package Application.ViewController;
 
 import Application.Model.Entities.Task;
+import Application.Model.UserModel;
 import Application.ViewModel.MainViewModel;
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
@@ -33,6 +34,7 @@ public class MainView
         this.viewModel = mainViewModel;
         this.viewHandler = viewHandler;
         setupLists();
+        viewModel.loadTask(UserModel.getUser());
     }
 
     public void addTask()
@@ -50,13 +52,17 @@ public class MainView
 
     public void logout()
     {
+        viewModel.saveLocally();
+        viewModel.clearUser();
+        viewModel.clearTasks();
+        viewHandler.changeScene(FXMLNames.LOGIN_VIEW);
     }
 
     public void edit()
     {
         if(isTaskSelected())
         {
-            viewHandler.openDialog("EditView.fxml", "Edit task");
+            viewHandler.openDialog(FXMLNames.EDIT_VIEW, "Edit task");
         }
     }
 

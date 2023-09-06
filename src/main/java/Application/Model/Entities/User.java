@@ -15,6 +15,11 @@ public class User
         this.password = builder.password;
         this.email = builder.email;
     }
+
+    public User(String username)
+    {
+        this.username = username;
+    }
     public static class UserBuilder
     {
         private final String username;

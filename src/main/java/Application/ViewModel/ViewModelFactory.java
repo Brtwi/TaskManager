@@ -15,7 +15,7 @@ public class ViewModelFactory
 
     public ViewModelFactory(ModelFactory modelFactory)
     {
-        this.mainViewModel = new MainViewModel(modelFactory.getTaskModel());
+        this.mainViewModel = new MainViewModel(modelFactory.getTaskModel(), modelFactory.getDataModel(), modelFactory.getUserModel());
         this.loginViewModel = new LoginViewModel(modelFactory.getUserModel(), modelFactory.getTaskModel());
         this.registerViewModel = new RegisterViewModel(modelFactory.getUserModel());
         this.newTaskViewModel = new NewTaskViewModel(modelFactory.getTaskModel(), modelFactory.getUserModel());

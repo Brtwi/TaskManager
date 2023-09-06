@@ -41,6 +41,7 @@ public class Login
 
     public void continueLocally()
     {
+        viewModel.continueLocally();
         viewHandler.changeScene(FXMLNames.MAIN_VIEW);
     }
 

@@ -1,8 +1,10 @@
 package Application.ViewModel;
 
 import Application.Model.Entities.Task;
-import Application.Model.ITaskModel;
-import Application.Model.ModelListListeners;
+import Application.Model.Entities.User;
+import Application.Model.Interfaces.IDataModel;
+import Application.Model.Interfaces.ITaskModel;
+import Application.Model.Interfaces.ModelListListeners;
 import Application.Model.UserModel;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -12,11 +14,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import lombok.Getter;
 
+import java.util.Optional;
+
 
 @Getter
 public class MainViewModel implements ModelListListeners
 {
     private final ITaskModel taskModel;
+    private final IDataModel dataModel;
+    private final UserModel userModel;
     private final ObservableList<Task> tasks;
     private final FilteredList<Task> ownTask;
     private final FilteredList<Task> sentTask;
@@ -24,10 +30,13 @@ public class MainViewModel implements ModelListListeners
     private final ObjectProperty<Task> selectedTask;
 
 
-    public MainViewModel(ITaskModel taskModel)
+    public MainViewModel(ITaskModel taskModel, IDataModel dataModel, UserModel userModel)
     {
         this.taskModel = taskModel;
         this.taskModel.addListListener(this);
+
+        this.dataModel = dataModel;
+        this.userModel = userModel;
 
         this.tasks = FXCollections.observableArrayList(taskModel.getTasks());
         this.ownTask = tasks.filtered(task -> task.getReceiver() == null);
@@ -63,4 +72,31 @@ public class MainViewModel implements ModelListListeners
         taskModel.delete(selectedTask.getValue());
         tasks.remove(selectedTask.getValue());
     }
+
+    public void saveLocally()
+    {
+        dataModel.saveLocal(tasks, Optional.ofNullable(UserModel.getUser().getEmail()));
+    }
+
+    public void clearUser()
+    {
+        userModel.cleanUser();
+    }
+
+    public void clearTasks()
+    {
+        taskModel.getTasks().clear();
+        tasks.clear();
+    }
+
+    public void loadTask(User user)
+    {
+        if(user.getUsername().equals("localhost"))
+        {
+            dataModel.loadLocalTasks();
+            System.out.println(taskModel.getTasks().size() + " tasks size");
+            tasks.addAll(taskModel.getTasks());
+        }
+    }
+
 }

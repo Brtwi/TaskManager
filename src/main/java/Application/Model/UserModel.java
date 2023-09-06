@@ -4,15 +4,15 @@ import Application.Model.Entities.User;
 import Application.Model.Services.UserServices;
 import lombok.Getter;
 @Getter
-public class UserModel
+public class UserModel //TODO Check if user need to be static, error appears in main view model
 {
+    @Getter
     private static User user;
     private final UserServices userServices;
 
     public UserModel()
     {
         this.userServices = new UserServices();
-        user = new User.UserBuilder("localhost").build();
     }
 
     public boolean register(String username, String password, String email)
@@ -29,5 +29,15 @@ public class UserModel
     public boolean isConnected()
     {
         return !user.getUsername().equals("localhost");
+    }
+
+    public void locally()
+    {
+        user = new User.UserBuilder("localhost").build();
+    }
+
+    public void cleanUser()
+    {
+        user = null;
     }
 }
