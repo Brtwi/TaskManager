@@ -2,6 +2,8 @@ package Application.Client.Services;
 
 import Application.Model.Entities.Task;
 import Application.Model.Entities.User;
+import Application.Model.Helpers.DataContainer;
+import Application.Model.POJOTest;
 import Application.Model.Services.JsonServices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,6 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,23 +37,24 @@ class JsonServicesTest
     @Test
     void fromJsonArray() throws JsonProcessingException
     {
-        String jsonArray = "[\n" +
-                "  {\n" +
-                "    \"creator\": \"John\",\n" +
-                "    \"title\": \"Finish Project\",\n" +
-                "    \"description\": \"Complete the final tasks for the project.\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"creator\": \"Alice\",\n" +
-                "    \"title\": \"Prepare Presentation\",\n" +
-                "    \"description\": \"Create a compelling presentation for the team.\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"creator\": \"Bob\",\n" +
-                "    \"title\": \"Review Code\",\n" +
-                "    \"description\": \"Go through the codebase and provide feedback.\"\n" +
-                "  }\n" +
-                "]";
+        String jsonArray = """
+                [
+                  {
+                    "creator": "John",
+                    "title": "Finish Project",
+                    "description": "Complete the final tasks for the project."
+                  },
+                  {
+                    "creator": "Alice",
+                    "title": "Prepare Presentation",
+                    "description": "Create a compelling presentation for the team."
+                  },
+                  {
+                    "creator": "Bob",
+                    "title": "Review Code",
+                    "description": "Go through the codebase and provide feedback."
+                  }
+                ]""";
 
         List<Task> tasks = JsonServices.fromJsonArrayStringToTaskList(jsonArray);
 
@@ -71,5 +75,37 @@ class JsonServicesTest
     {
         JsonNode node = JsonServices.toJson(task);
         System.out.println(JsonServices.stringify(node));
+    }
+
+    @Test
+    void fromJsonFile()
+    {
+        String filename = "test.json";
+
+        DataContainer<User, POJOTest> container = JsonServices.fromJsonFile(filename, User.class, POJOTest.class);
+
+        assert container != null;
+        List<POJOTest> tasks = container.getObjects();
+
+        assertEquals("userLocal", container.getObject().getUsername());
+        assertTrue(tasks.containsAll(container.getObjects()));
+    }
+
+    @Test
+    void toJsonFile()
+    {
+        String filename = "test.json";
+        String user = "userLocal";
+        List<POJOTest> pojos = new ArrayList<>(Arrays.asList(
+                new POJOTest("user", "desc", "format"),
+                new POJOTest("user", "desc", "format"),
+                new POJOTest("user", "desc", "format"),
+                new POJOTest()
+        ));
+
+        JsonServices.toJsonFile(filename, user, pojos);
+
+        assertEquals(user, Objects.requireNonNull(JsonServices.fromJsonFile(filename, User.class, POJOTest.class))
+                .getObject().getUsername());
     }
 }

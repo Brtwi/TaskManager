@@ -26,6 +26,12 @@ module Application {
     exports Application.ViewController;
     opens Application.ViewController to javafx.fxml;
 
+    opens Application.Model.Helpers to com.fasterxml.jackson.databind;
+
+    opens Application.Model to com.fasterxml.jackson.databind;
+
     opens Application.Icons to javafx.fxml;
     exports Application.Model;
+    exports Application.Model.Interfaces;
+    exports Application.Model.Helpers;
 }
